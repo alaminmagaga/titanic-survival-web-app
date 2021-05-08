@@ -16,9 +16,12 @@ sex_mapping={'male':1,'female':2}
 df['Sex']=df['Sex'].map(sex_mapping)
 embark_mapping={'S':1,'C':2,'Q':3}
 df['Embarked']=df['Embarked'].map(embark_mapping)
-df.drop(['PassengerId','Name','Ticket'],axis=1,inplace=True)
-x=df.drop('Survived',axis=1)
-y=df.Survived
+survival_mapping={1:'survived',0:'Do not survived'}
+df['Survival']=df['Survived'].map(embark_mapping)
+
+df.drop(['PassengerId','Name','Ticket','Survived'],axis=1,inplace=True)
+x=df.drop('Survival',axis=1)
+y=df.Survival
 from sklearn.preprocessing import MinMaxScaler
 scaler=MinMaxScaler()
 x=scaler.fit_transform(x)
